@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block title %}{{ subject|title }} - {{ mode.capitalize() }}{% endblock %}
+{% block content %}
+  <h1>{{ subject|title }} ({{ mode.capitalize() }})</h1>
+  {% if pdfs %}
+    <div class="pdf-list">
+      {% for pdf in pdfs %}
+      <a href="{{ url_for('pdf_view', subject=pdf.subject, filename=pdf.filename) }}" class="pdf-card">
+        <div class="pdf-title">{{ pdf.title }}</div>
+        {% if pdf.description %}
+          <div class="pdf-description">{{ pdf.description }}</div>
+        {% endif %}
+      </a>
+      {% endfor %}
+    </div>
+  {% else %}
+    <p><i class="fa-solid fa-file"></i>No PDFs found for this subject.</p>
+  {% endif %}
+  <p><a href="{{ url_for('mode_page', mode=mode) }}"><i class="fa-solid fa-square-caret-left"></i> Back to Subjects</a></p>
+{% endblock %}

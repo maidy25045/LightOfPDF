@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" href="https://i.postimg.cc/SNr2HRwD/photo_2025-05-17_01-15-40-removebg-preview.png" type="image/png" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block title %}Academic PDF Repository{% endblock %}</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins&family=Roboto&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+   {% block extra_css %}{% endblock %}
+</head>
+<body>
+
+  <nav class="navbar">
+    <div class="container nav-container">
+      <a href="{{ url_for('home') }}" class="logo">
+          <img src="https://i.postimg.cc/kMv1v8M5/photo_2025-05-17_01-14-27.jpg" alt="PDF Repo Logo" class="logo-img" />
+      </a>
+
+<div class="brand-text-box">
+  <span class="brand-text">Light Of Education</span>
+</div>
+      
+      <div class="search-container">
+  <button id="search-icon" aria-label="Search">
+    <i class="fa-brands fa-searchengin"></i>
+  </button>
+  <form id="search-form" class="search-form" action="{{ url_for('search') }}" method="GET">
+    <input type="text" name="query" placeholder="Search..." />
+    <button type="submit"><i class="fa-brands fa-searchengin"></i></button>
+  </form>
+</div>
+
+      <ul class="nav-menu" id="nav-menu">
+        <li><a href="{{ url_for('home') }}"><i class="fa-solid fa-house-chimney-user"></i> Home</a></li>
+        {% if session.get('admin_logged_in') %}
+          <li><a href="{{ url_for('upload') }}"><i class="fa-solid fa-upload"></i> Upload</a></li>
+          <li><a href="{{ url_for('logout') }}"><i class="fa-solid fa-right-from-bracket"></i> Logout</a></li>
+        {% else %}
+          <li><a href="{{ url_for('login') }}"><i class="fa-solid fa-user-lock"></i> Admin Login</a></li>
+        {% endif %}
+      </ul>
+      <button class="hamburger" id="hamburger" aria-label="Toggle menu">&#9776;</button>
+    </div>
+  </nav>
+  <main class="container">
+    <div id="particles-js">  </div>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        <div class="flash-messages">
+          {% for category, message in messages %}
+            <div class="flash-message {{ category }}">{{ message }}</div>
+          {% endfor %}
+        </div>
+      {% endif %}
+    {% endwith %}
+    {% block content %}{% endblock %}
+  </main>
+      <footer>
+        Made by <strong>TeslaTech</strong>
+    </footer>
+  <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+  <script>
+    const hamburger = document.getElementById('hamburger');
+    const navMenu = document.getElementById('nav-menu');
+    hamburger.addEventListener('click', () => {
+      navMenu.classList.toggle('show');
+    });
+
+      particlesJS('particles-js', {
+  "particles": {
+    "number": {
+      "value": 40,
+      "density": {
+        "enable": true,
+        "value_area": 800
+      }
+    },
+    "color": {
+      "value": "#00e0ff"
+    },
+    "shape": {
+      "type": "circle"
+    },
+    "opacity": {
+      "value": 0.3,
+      "random": true
+    },
+    "size": {
+      "value": 3,
+      "random": true
+    },
+    "move": {
+      "enable": true,
+      "speed": 0.5,
+      "direction": "none",
+      "random": true,
+      "out_mode": "out"
+    }
+  },
+  "interactivity": {
+    "detect_on": "canvas",
+    "events": {
+      "onhover": {
+        "enable": true,
+        "mode": "repulse"
+      }
+    },
+    "modes": {
+      "repulse": {
+        "distance": 100
+      }
+    }
+  }
+});
+
+
+  const searchIcon = document.getElementById('search-icon');
+  const searchForm = document.getElementById('search-form');
+
+  searchIcon.addEventListener('click', () => {
+    searchForm.style.display = searchForm.style.display === 'flex' ? 'none' : 'flex';
+  });
+
+  // Optional: hide on outside click
+  document.addEventListener('click', (e) => {
+    if (!document.querySelector('.search-container').contains(e.target)) {
+      searchForm.style.display = 'none';
+    }
+  });
+  </script>
+</body>
+</html>
+
+
+
+
+

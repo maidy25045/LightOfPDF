@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block title %}Search Results{% endblock %}
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='search.css') }}">
+{% endblock %}
+{% block content %}
+<div class="container py-4">
+  <h3><i class="fa-solid fa-square-poll-vertical"></i> Search Results for "{{ query }}"</h3>
+
+  {% if results %}
+    <ul class="list-group mt-4">
+      {% for pdf in results %}
+        <li class="list-group-item">
+          <div class="d-flex align-items-center">
+            <img src="{{ pdf.photo }}" alt="Thumbnail" class="me-3" style="width: 60px; height: auto;">
+            <div>
+              <strong>{{ pdf.title }}</strong><br>
+              <small><em>{{ pdf.subject }} | {{ pdf.mode }}</em></small><br>
+              <p>{{ pdf.description }}</p>
+              <a href="{{ pdf.link }}" target="_blank" class="btn btn-sm btn-primary">View PDF</a>
+            </div>
+          </div>
+        </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p class="text-muted mt-4"><i class="fa-solid fa-bug"></i> No results found for "<strong>{{ query }}</strong>".</p>
+  {% endif %}
+</div>
+{% endblock %}

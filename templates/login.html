@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block title %}Admin Login{% endblock %}
+{% block content %}
+  <h1><i class="fa-solid fa-user-lock"></i>Admin Login</h1>
+  <form action="{{ url_for('login') }}" method="POST" class="login-form">
+    <label for="username"><i class="fa-solid fa-id-card-clip"></i> Username:</label>
+    <input type="text" name="username" id="username" required autofocus />
+    <label for="password"><i class="fa-solid fa-key"></i> Password:</label>
+    <input type="password" name="password" id="password" required />
+    <button type="submit" class="btn btn-primary">Login</button>
+  </form>
+{% endblock %}

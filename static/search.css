@@ -1,0 +1,102 @@
+html, body {
+  height: auto;          /* Let height grow naturally */
+  min-height: 100%;      /* Ensure at least full viewport height */
+  margin: 0;             /* Remove default margins */
+  padding: 0;
+  overflow-y: auto;      /* Enable vertical scroll when needed */
+  box-sizing: border-box; /* Consistent sizing */
+}
+
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 1rem 0;
+  /* No min-height here to avoid unnecessary big container */
+}
+
+
+/* Header */
+.container h3 {
+  font-size: 1.8rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+  color: #ffffff;
+}
+
+/* List Group Styling */
+.list-group-item {
+  background-color: #f9f9f9;
+  border: none;
+  border-radius: 12px;
+  margin-bottom: 1rem;
+  padding: 1rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.list-group-item:hover {
+  transform: scale(1.01);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+}
+
+/* Thumbnail Image */
+.list-group-item img {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+/* PDF Info */
+.list-group-item strong {
+  font-size: 1.2rem;
+  color: #333;
+}
+
+.list-group-item small {
+  color: #555;
+}
+
+.list-group-item p {
+  margin: 0.5rem 0;
+  color: #444;
+  font-size: 0.95rem;
+}
+
+/* View Button */
+.btn-primary {
+  background-color: #2dc6cf;
+  border-color: #4A90E2;
+  padding: 0.4rem 0.8rem;
+  font-size: 0.85rem;
+  border-radius: 6px;
+  transition: background-color 0.3s ease;
+}
+
+.btn-primary:hover {
+  background-color: #357ABD;
+  border-color: #357ABD;
+}
+
+/* No Results Text */
+.text-muted {
+  font-size: 1rem;
+  color: #888;
+}
+
+/* Responsive */
+@media (max-width: 576px) {
+  .list-group-item {
+    padding: 0.8rem;
+  }
+
+  .list-group-item img {
+    width: 50px;
+    height: 50px;
+  }
+
+  .btn-primary {
+    font-size: 0.75rem;
+    padding: 0.3rem 0.7rem;
+  }
+}

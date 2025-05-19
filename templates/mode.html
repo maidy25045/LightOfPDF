@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block title %}{{ mode.capitalize() }} Subjects{% endblock %}
+{% block content %}
+  <h1>{{ mode.capitalize() }} Subjects</h1>
+  <div class="subject-cards">
+    {% for subject in subjects %}
+    <a href="{{ url_for('subject_page', mode=mode, subject=subject) }}" class="subject-card">
+      {{ subject|title }}
+    </a>
+    {% endfor %}
+  </div>
+{% endblock %}

@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block title %}{{ pdf.title }} - PDF View{% endblock %}
+{% block content %}
+  <h1>{{ pdf.title }}</h1>
+  <p><strong><i class="fa-solid fa-pen-to-square"></i> Mode:</strong> {{ pdf.mode.capitalize() }}</p>
+  <p><strong><i class="fa-solid fa-book-open"></i> Subject:</strong> {{ pdf.subject|title }}</p>
+  {% if pdf.photo %}
+    <img src="{{ pdf.photo }}" alt="{{ pdf.title }}" class="pdf-photo" />
+  {% endif %}
+  {% if pdf.description %}
+    <p><strong><i class="fa-solid fa-comment-medical"></i> Description:</strong> {{ pdf.description }}</p>
+  {% endif %}
+  <div style="width: 100%; max-width: 700px; margin: 40px auto;">
+  <a href="{{ pdf.link }}" target="_blank" download
+     style="
+       display: block;
+       padding: 30px;
+       border-radius: 20px;
+       background: rgba(255, 255, 255, 0.05);
+       border: 1px solid rgba(255, 255, 255, 0.2);
+       backdrop-filter: blur(12px);
+       -webkit-backdrop-filter: blur(12px);
+       box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.3);
+       color: #ffffff;
+       font-size: 20px;
+       font-weight: 600;
+       text-align: center;
+       text-decoration: none;
+       transition: all 0.3s ease;
+     "
+     onmouseover="this.style.background='rgba(255,255,255,0.15)'; this.style.transform='scale(1.02)'"
+     onmouseout="this.style.background='rgba(255,255,255,0.05)'; this.style.transform='scale(1)'">
+    <i class="fa-solid fa-download"></i> Click to View or Download PDF
+  </a>
+  </div>
+
+
+  <p><a href="{{ url_for('subject_page', mode=pdf.mode, subject=pdf.subject) }}"><i class="fa-solid fa-square-caret-left"></i> Back to PDFs</a></p>
+{% endblock %}

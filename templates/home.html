@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block title %}Home - Academic PDF Repository{% endblock %}
+{% block content %}
+  <h1><i class="fa-solid fa-circle-check"></i> Select Mode</h1>
+  <div class="mode-cards">
+    {% for mode in modes %}
+    <a href="{{ url_for('mode_page', mode=mode) }}" class="mode-card">
+      {{ mode.capitalize() }}
+    </a>
+    {% endfor %}
+  </div>
+{% endblock %}
